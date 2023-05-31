@@ -17,7 +17,6 @@ import SigninPage from './Pages/SigninPage';
 import ShippingPage from './Pages/ShippingPage';
 import SignupPage from './Pages/SignupPage';
 import CallendarPage from './Pages/CallendarPage';
-import TestPage from './Pages/TestPage';
 
 
 function App() {
@@ -85,7 +84,6 @@ function App() {
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/shipping" element={<ShippingPage />} />
               <Route path="/callendar" element={<CallendarPage />} />
-              <Route path="/test" element={<TestPage />} />
 
 
 

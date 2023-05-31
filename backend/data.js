@@ -1,6 +1,28 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
+  calculations: [
+    {
+      startDate: '05/16/2023',
+      endDate: '05/18/2023',
+    },
+    {
+      startDate: '05/16/2023',
+      endDate: '05/22/2023',
+    },
+    {
+      startDate: '05/16/2023',
+      endDate: '05/19/2023',
+    },
+    {
+      startDate: '05/16/2023',
+      endDate: '05/25/2023',
+    },
+    {
+      startDate: '05/16/2023',
+      endDate: '05/28/2023',
+    },
+  ],
   users: [
     {
       name: 'Jev',
