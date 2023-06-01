@@ -1,102 +1,72 @@
-import Container from 'react-bootstrap/esm/Container';
-import { Helmet } from 'react-helmet-async';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { getError } from '../utils';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
+export default function CalendarPage() {
+  const [busyHours, setBusyHours] = useState(0);
+  const [selectedStartDate, setSelectedStartDate] = useState('');
+  const [selectedEndDate, setSelectedEndDate] = useState('');
 
-export default function CallendarPage() {
-  
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
-  const [totalHours, setTotalHours] = useState(0);
-  const [availableHours, setAvailableHours] = useState(0);
-  const [dailyWorkingHours, setDailyWorkingHours] = useState(0);
-
-  const submitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await Axios.post('/api/callendar', {
+      const response = await Axios.post('/api/calculations/callendar', {
         selectedStartDate,
         selectedEndDate,
-        totalHours,
+        busyHours,
       });
 
-      const { availableHours, dailyWorkingHours } = response.data;
-      setAvailableHours(availableHours);
-      setDailyWorkingHours(dailyWorkingHours);
-      
-    } catch (err) {
-      toast.error(getError(err));
-    }
+      console.log('Data posted to the server:', response.data);
+      // Additional actions after successful submission
 
+    } catch (error) {
+      console.error('Error:', error.message);
+      // Handle the error appropriately
+    }
   };
 
   return (
-    <Container className="small-container">
-      <Helmet>
-        <title>Callendar page</title>
-      </Helmet>
-      <h1 className="my-3">CaLENDAR pAGE</h1>
-      <Form onSubmit={submitHandler}>
-        
-        <Form.Group className="mb-3" controlId="date">
-          <Form.Label>Date</Form.Label>
-          <DatePicker
-            id="dateRange"
-            selected={selectedStartDate}
-            selectsStart
-            startDate={selectedStartDate}
-            endDate={selectedEndDate}
-            placeholderText="Start Date"
-            type="date"
-            required
-            onChange={(date) => setSelectedStartDate(date)}
-          />
-        </Form.Group>
+    <div>
+      <h1>Calendar page</h1>
+        <form>
+            
+        </form>
 
-        <Form.Group className="mb-3" controlId="date">
-          <Form.Label>Date</Form.Label>
-          <DatePicker
-            selected={selectedEndDate}
-            selectsEnd
-            startDate={selectedStartDate}
-            endDate={selectedEndDate}
-            minDate={selectedStartDate}
-            placeholderText="End Date"
-            type="date"
-            required
-            onChange={(date) => setSelectedEndDate(date)}
-          />
-        </Form.Group>
-        <div>
-          <label htmlFor="totalHours">Total Hours:</label>
-          <input
+
+
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="busyHours">
+          <Form.Label>Busy hours</Form.Label>
+          <Form.Control
             type="number"
-            id="totalHours"
-            value={totalHours}
-            onChange={(e) => setTotalHours(Number(e.target.value))}
+            required
+            value={busyHours}
+            onChange={(e) => setBusyHours(e.target.value)}
           />
-        </div>
-
-
-        <div className="mb-3">
-          <Button type="submit">Calculate</Button>
-        </div>
-        
+        </Form.Group>
+        <Form.Group controlId="selectedStartDate">
+          <Form.Label>Start Date</Form.Label>
+          <Form.Control
+            type="date"
+            required
+            value={selectedStartDate}
+            onChange={(e) => setSelectedStartDate(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="selectedEndDate">
+          <Form.Label>End Date</Form.Label>
+          <Form.Control
+            type="date"
+            required
+            value={selectedEndDate}
+            onChange={(e) => setSelectedEndDate(e.target.value)}
+          />
+        </Form.Group>
+        <Button type="submit">Calculate</Button>
       </Form>
-      {availableHours > 0 && (
-        <div>
-          <p>Available Hours: {availableHours}</p>
-          <p>Daily Working Hours: {dailyWorkingHours}</p>
-        </div>
-      )}
-      
-    </Container>
+    </div>
   );
 }

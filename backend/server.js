@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
-app.use('/api/callendar', calculationRouter);
+app.use('/api/calculations', calculationRouter);
 
 
 app.use((err, req, res, next) => {

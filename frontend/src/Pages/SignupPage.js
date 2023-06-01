@@ -1,28 +1,27 @@
-import Axios from 'axios';
+import Container from 'react-bootstrap/esm/Container';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Helmet } from 'react-helmet-async';
+import Axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../context/Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
 
-export default function SignupScreen() {
+export default function SignupPage() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
-
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [name, setname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+  const {userInfo} = state;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -39,8 +38,7 @@ export default function SignupScreen() {
       localStorage.setItem('userInfo', JSON.stringify(data));
       navigate(redirect || '/');
     } catch (err) {
-      toast.error(getError(err));
-    }
+toast.error(getError(err))    }
   };
 
   useEffect(() => {
@@ -54,13 +52,16 @@ export default function SignupScreen() {
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
-      <h1 className="my-3">Sign Up</h1>
+      <h1 className="my-3"> Sign Up</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="name">
+      <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control onChange={(e) => setName(e.target.value)} required />
+          <Form.Control
+            type="name"
+            required
+            onChange={(e) => setname(e.target.value)}
+          />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -76,21 +77,23 @@ export default function SignupScreen() {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Form.Group className="mb-3" controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
         </Form.Group>
+        <Form.Group className="mb-3" controlId="confirmPassword">
+          <Form.Label>Confirm password</Form.Label>
+          <Form.Control
+            type="confirmPassword"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </Form.Group>
+
         <div className="mb-3">
           <Button type="submit">Sign Up</Button>
         </div>
+
         <div className="mb-3">
           Already have an account?{' '}
-          <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
+          <Link to={`/singin?redirect=${redirect}`}>Sign In</Link>
         </div>
       </Form>
     </Container>

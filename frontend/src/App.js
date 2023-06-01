@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
-import ProductPage from './Pages/ProductPage';
 import NavBar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
@@ -12,9 +11,7 @@ import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './context/Store';
-import CartPage from './Pages/CartPage';
 import SigninPage from './Pages/SigninPage';
-import ShippingPage from './Pages/ShippingPage';
 import SignupPage from './Pages/SignupPage';
 import CallendarPage from './Pages/CallendarPage';
 
@@ -77,15 +74,10 @@ function App() {
         <main>
           <Container className="mt-3">
             <Routes>
-              <Route path="/product/:slug" element={<ProductPage />} />
               <Route path="/" element={<HomePage />} />
-              <Route path="/cart" element={<CartPage />} />
               <Route path="/signin" element={<SigninPage />} />
               <Route path="/signup" element={<SignupPage />} />
-              <Route path="/shipping" element={<ShippingPage />} />
               <Route path="/callendar" element={<CallendarPage />} />
-
-
 
             </Routes>
           </Container>

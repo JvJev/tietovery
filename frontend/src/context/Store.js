@@ -4,6 +4,11 @@ import { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 const initialState = {
+
+  callendarInfo: localStorage.getItem('callendarInfo')
+    ? JSON.parse(localStorage.getItem('callendarInfo'))
+    : null,
+
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
@@ -62,9 +67,11 @@ function reducer(state, action) {
         ...state,
         cart: {
           ...state.cart,
-          shippingAddress: action.paymload,
+          shippingAddress: action.payload,
         },
       };
+      case 'CALLENDAR_DATA_POST':
+        return { ...state, callendarInfo: action.payload };
     default:
       return state;
   }
