@@ -16,6 +16,9 @@ calculationRouter.post(
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       busyHours: req.body.busyHours,
+      freeHours: req.body.freeHours,
+    remainingDayFinalizer: req.body.remainingDayFinalizer,
+    avgHoursPerDay: req.body.avgHoursPerDay,
     });
     const calculation = await newCalcution.save();
     res.send({
@@ -23,6 +26,9 @@ calculationRouter.post(
       startDate: calculation.startDate,
       endDate: calculation.endDate,
       busyHours: calculation.busyHours,
+      freeHours: calculation.freeHours,
+    remainingDayFinalizer: calculation.remainingDayFinalizer,
+    avgHoursPerDay: calculation.avgHoursPerDay,
     });
   })
 );
