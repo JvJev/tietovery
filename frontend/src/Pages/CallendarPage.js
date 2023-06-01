@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/esm/Container';
+import { Link } from 'react-router-dom';
 
 
 export default function CalendarPage() {
@@ -23,6 +24,9 @@ export default function CalendarPage() {
         startDate,
         endDate,
         busyHours,
+        freeHours,
+        remainingDayFinalizer,
+        avgHoursPerDay,
       });
 
       console.log('Data posted to the server:', response.data);
@@ -57,23 +61,30 @@ export default function CalendarPage() {
     onlyDayEnd
   );
 
-  const remainingYearsCalculator = onlyYearEnd - onlyYearStart;
-  const remainingMonthsCalculator = onlyMonthEnd - onlyMonthStart;
+  let remainingYearsCalculator = (onlyYearEnd - onlyYearStart);
+  let remainingMonthsCalculator = (onlyMonthEnd - onlyMonthStart);
   const remainingDaysCalculator = onlyDayEnd - onlyDayStart;
+const remainingDayFinalizer = remainingMonthsCalculator * 30 + remainingYearsCalculator * 365 + remainingDaysCalculator;
+
+if (remainingMonthsCalculator > 0) {
+    remainingMonthsCalculator -= 1;
+  }
+
+  if (remainingYearsCalculator > 0) {
+    remainingYearsCalculator -= 1;
+  }
   console.log(
     remainingYearsCalculator,
     remainingMonthsCalculator,
-    remainingDaysCalculator
+    remainingDaysCalculator, remainingDayFinalizer
+    
   );
 
-  const availablePhDhoursPerDay =
-    freeHours * remainingDaysCalculator +
-    remainingMonthsCalculator * 30 +
-    remainingYearsCalculator * 365;
-  const avgHoursPerDay = busyHours / remainingDaysCalculator;
+  const avgHoursPerDay = busyHours / remainingDayFinalizer ;
 
-  console.log(freeHours, availablePhDhoursPerDay, avgHoursPerDay);
+  console.log(freeHours, avgHoursPerDay);
 
+  
   return (
     <div>
       <h1>Calendar page</h1>
@@ -133,8 +144,7 @@ export default function CalendarPage() {
         </Form>
       </Container>
 <br></br>
-(showResults &&())
-      <div>
+{showResults &&(<div>
         <Container className="small-container">
           <Card className="bg-light border-primary">
             <Card.Body>
@@ -145,18 +155,24 @@ export default function CalendarPage() {
                 Remaining months untill deadline: <b>{remainingMonthsCalculator}</b>
               </Card.Text>
               <Card.Text>
-                Remaining days untill deadline: <b>{remainingDaysCalculator}</b>
+                Remaining days untill deadline: <b>{remainingDayFinalizer}</b>
               </Card.Text>
               <Card.Text>
-                Total available hours for project to complete: <b>{availablePhDhoursPerDay}</b>
+                Available hours per day: <b>{freeHours}</b>
               </Card.Text>
               <Card.Text>
-                Average hours per day required to complete the project: <b>{avgHoursPerDay}</b>
+                Average hours required per day to complete the project: <b>{avgHoursPerDay}</b>
               </Card.Text>
             </Card.Body>
           </Card>
         </Container>
-      </div>
+        <br></br>
+        <Container className='small-container'><div className="mb-3">
+            <Button className='bg-warning'><Link to={`/signup`}>Want some extra features in the future?</Link></Button>
+          
+        </div></Container>
+        
+      </div>)}
     </div>
   );
 }
