@@ -5,29 +5,29 @@ const data = {
     {
       startDate: '05/16/2023',
       endDate: '05/18/2023',
-      busyHours: 8,
+      phdHours: 8,
     },
     {
       startDate: '05/16/2023',
       endDate: '05/22/2023',
-      busyHours: 8,
+      phdHours: 8,
 
     },
     {
       startDate: '05/16/2023',
       endDate: '05/19/2023',
-      busyHours: 7,
+      phdHours: 7,
     },
     {
       startDate: '05/16/2023',
       endDate: '05/25/2023',
-      busyHours: 8,
+      phdHours: 8,
 
     },
     {
       startDate: '05/16/2023',
       endDate: '05/28/2023',
-      busyHours: 8,
+      phdHours: 8,
 
     },
   ],

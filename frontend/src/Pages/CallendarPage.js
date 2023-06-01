@@ -133,7 +133,8 @@ export default function CalendarPage() {
         </Form>
       </Container>
 <br></br>
-{showResults &&(<div>
+(showResults &&())
+      <div>
         <Container className="small-container">
           <Card className="bg-light border-primary">
             <Card.Body>
@@ -155,8 +156,7 @@ export default function CalendarPage() {
             </Card.Body>
           </Card>
         </Container>
-      </div>)}
-      
+      </div>
     </div>
   );
 }
