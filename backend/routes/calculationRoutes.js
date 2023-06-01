@@ -10,7 +10,7 @@ calculationRouter.get('/', async (req, res) => {
 });
 
 calculationRouter.post(
-  '/calculations',
+  '/callendar',
   expressAsyncHandler(async (req, res) => {
     const newCalcution = new Calculation({
       startDate: req.body.startDate,
