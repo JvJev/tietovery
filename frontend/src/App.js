@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import NavBar from 'react-bootstrap/Navbar';
-import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { ToastContainer } from 'react-toastify';
@@ -15,10 +14,9 @@ import SigninPage from './Pages/SigninPage';
 import SignupPage from './Pages/SignupPage';
 import CallendarPage from './Pages/CallendarPage';
 
-
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
+  const { userInfo } = state;
 
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
@@ -34,26 +32,18 @@ function App() {
           <NavBar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
-                <NavBar.Brand>Jev's eshop</NavBar.Brand>
+                <NavBar.Brand>Previous calculations</NavBar.Brand>
               </LinkContainer>
+              <LinkContainer to="/callendar">
+                <NavBar.Brand>Time planner</NavBar.Brand>
+              </LinkContainer>
+              <LinkContainer to="/signup">
+                <NavBar.Brand className="nav-link">Register</NavBar.Brand>
+              </LinkContainer>
+
               <Nav className="me-auto">
-                <Link to="/cart" className="nav-link">
-                  Cart
-                  {cart.cartItems.length > 0 && (
-                    <Badge pill bg="danger">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)};
-                    </Badge>
-                  )}
-                </Link>
                 {userInfo ? (
                   <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
-                    <LinkContainer to="/profile">
-                      <NavDropdown.Item>User Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/orderhistory">
-                      <NavDropdown.Item>Order History</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Divider />
                     <Link
                       className="dropdown-item"
                       to="#signout"
@@ -78,13 +68,15 @@ function App() {
               <Route path="/signin" element={<SigninPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/callendar" element={<CallendarPage />} />
-
             </Routes>
           </Container>
         </main>
         <footer>
           <div className="text-center">
-            All rights reserved to Outstanding Larva
+            Task for Tietoevry academy. I am trying my best to make this code
+            work in 3 days :)
+            <br></br>
+            Best regards, Jev
           </div>
         </footer>
       </div>
