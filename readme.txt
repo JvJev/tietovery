@@ -4,6 +4,8 @@ Main features:
 3. Register and login feature.
 4. get and post data to mongo database via api.
 
+    Note: I created this application from my previous code. This was faster apprach because I had very limited. You will see in commits that I have deleted unused code. Here is link to original project if you are interested: https://github.com/JvJev/eshop_react_node .
+
 
 
 Here are steps how to use application:
