@@ -74,7 +74,7 @@ export default function CalendarPage() {
         <div className="mb-3">
           <Button className="bg-warning">
             <Link to={`/signup`}>
-              Want some extra features in the future? Register here.
+            To see your time calculations history. Register here.
             </Link>
           </Button>
         </div>
