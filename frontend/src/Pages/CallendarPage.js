@@ -50,15 +50,6 @@ export default function CalendarPage() {
   const onlyYearEnd = parseInt(parseDate(endDate).slice(0, 4).join(''), 10);
   const onlyMonthEnd = parseInt(parseDate(endDate).slice(4, 6).join(''), 10);
   const onlyDayEnd = parseInt(parseDate(endDate).slice(6, 8).join(''), 10);
-  console.log(
-    onlyYearStart,
-    onlyMonthStart,
-    onlyDayStart,
-    onlyYearEnd,
-    onlyMonthEnd,
-    onlyDayEnd
-  );
-
   let remainingYearsCalculator = onlyYearEnd - onlyYearStart;
   let remainingMonthsCalculator = onlyMonthEnd - onlyMonthStart;
   const remainingDaysCalculator = onlyDayEnd - onlyDayStart;
@@ -74,16 +65,8 @@ export default function CalendarPage() {
   if (remainingYearsCalculator > 0) {
     remainingYearsCalculator -= 1;
   }
-  console.log(
-    remainingYearsCalculator,
-    remainingMonthsCalculator,
-    remainingDaysCalculator,
-    remainingDayFinalizer
-  );
 
   const avgHoursPerDay = busyHours / remainingDayFinalizer;
-
-  console.log(freeHours, avgHoursPerDay);
 
   return (
     <div>
@@ -96,9 +79,11 @@ export default function CalendarPage() {
           </Button>
         </div>
         <br></br>
+        <br></br>
       </Container>
-      <h1>Calendar page</h1>
+
       <Container className="small-container">
+        <h1>Calculate your time</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="busyHours">
             <Form.Label>How many hours phD should take to complete?</Form.Label>
@@ -111,7 +96,7 @@ export default function CalendarPage() {
             />
           </Form.Group>
           <Form.Group controlId="sleepHours">
-            <Form.Label>How many you sleep per day?</Form.Label>
+            <Form.Label>How many hours per day you sleep?</Form.Label>
             <Form.Control
               type="number"
               max={24}
@@ -122,7 +107,9 @@ export default function CalendarPage() {
             />
           </Form.Group>
           <Form.Group controlId="otherBusyHours">
-            <Form.Label>Busy hours per day on other activities</Form.Label>
+            <Form.Label>
+              How hours per day you spend on other activities?
+            </Form.Label>
             <Form.Control
               type="number"
               max={24}
@@ -133,7 +120,7 @@ export default function CalendarPage() {
             />
           </Form.Group>
           <Form.Group controlId="selectedStartDate">
-            <Form.Label>Start Date</Form.Label>
+            <Form.Label>PhD start date</Form.Label>
             <Form.Control
               type="date"
               required
@@ -142,7 +129,7 @@ export default function CalendarPage() {
             />
           </Form.Group>
           <Form.Group controlId="selectedEndDate">
-            <Form.Label>End Date (deadline)</Form.Label>
+            <Form.Label>Phd end Date (deadline)</Form.Label>
             <Form.Control
               type="date"
               required
@@ -150,6 +137,7 @@ export default function CalendarPage() {
               onChange={(e) => setEndDate(e.target.value)}
             />
           </Form.Group>
+          <br></br>
           <Button type="submit">Calculate</Button>
         </Form>
       </Container>

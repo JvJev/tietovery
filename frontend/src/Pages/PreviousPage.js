@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { Helmet } from 'react-helmet-async';
 import Container from 'react-bootstrap/esm/Container';
 import Card from 'react-bootstrap/Card';
@@ -51,12 +50,12 @@ function PreviousPage() {
                     <Card className="bg-light border-primary">
                       <Card.Body>
                         <Card.Text>
-                          Remaining years untill deadline:{' '}
-                          <b>{calc.remainingYearsCalculator}</b>
+                          Start date:{' '}
+                          <b>{calc.startDate}</b>
                         </Card.Text>
                         <Card.Text>
-                          Remaining months untill deadline:{' '}
-                          <b>{calc.remainingMonthsCalculator}</b>
+                          End date:{' '}
+                          <b>{calc.endDate}</b>
                         </Card.Text>
                         <Card.Text>
                           Remaining days untill deadline:{' '}
@@ -83,24 +82,3 @@ function PreviousPage() {
 }
 
 export default PreviousPage;
-
-// <Container className='small-container'>
-//       <div className="previousCalculation">
-//         {previousCalculation.map((calc) => (
-//           <div className="calc" key={calc._id}>
-//             <div className="calc-info">
-//               <p>
-//                 <strong>${calc.freeHours}</strong>
-//               </p>
-//               <button>Add to cart</button>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//       </Container>
-
-// {calculations.map((calculation) => (
-//   <Col key={calculation._id} sm={6} md={4} lg={3} className="mb-3">
-//     <CalculationCard product={calculation}></CalculationCard>
-//   </Col>
-// ))}

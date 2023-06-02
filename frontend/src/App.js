@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import HomePage from './Pages/PreviousPage';
 import NavBar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -13,7 +12,6 @@ import { Store } from './context/Store';
 import SigninPage from './Pages/SigninPage';
 import SignupPage from './Pages/SignupPage';
 import CallendarPage from './Pages/CallendarPage';
-import Badge from 'react-bootstrap/esm/Badge';
 import PreviousPage from './Pages/PreviousPage';
 
 function App() {
@@ -39,7 +37,6 @@ function App() {
               <LinkContainer to="/signup">
                 <NavBar.Brand className="nav-link">Register</NavBar.Brand>
               </LinkContainer>
-
               <Nav className="me-auto">
                 {userInfo ? (
                   <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
@@ -79,8 +76,8 @@ function App() {
         </main>
         <footer>
           <div className="text-center">
-            Task for Tietoevry academy. I am trying my best to make this code
-            work in 3 days :)
+            This is for you Tadas from Tietoevry. I am trying my best to make
+            this code work in 3 days :)
             <br></br>
             Best regards, Jev
           </div>

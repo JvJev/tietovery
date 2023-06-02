@@ -9,7 +9,6 @@ import { Store } from '../context/Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
-
 export default function SignupPage() {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -20,7 +19,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {userInfo} = state;
+  const { userInfo } = state;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -38,7 +37,8 @@ export default function SignupPage() {
       localStorage.setItem('userInfo', JSON.stringify(data));
       navigate(redirect || '/');
     } catch (err) {
-toast.error(getError(err))    }
+      toast.error(getError(err));
+    }
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ toast.error(getError(err))    }
       </Helmet>
       <h1 className="my-3"> Sign Up</h1>
       <Form onSubmit={submitHandler}>
-      <Form.Group className="mb-3" controlId="name">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="name"
@@ -89,11 +89,6 @@ toast.error(getError(err))    }
 
         <div className="mb-3">
           <Button type="submit">Sign Up</Button>
-        </div>
-
-        <div className="mb-3">
-          Already have an account?{' '}
-          <Link to={`/singin`}>Sign In</Link>
         </div>
       </Form>
     </Container>

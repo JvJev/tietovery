@@ -9,7 +9,6 @@ import { Store } from '../context/Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
-
 export default function SigninPage() {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -18,7 +17,7 @@ export default function SigninPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {userInfo} = state;
+  const { userInfo } = state;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -31,7 +30,8 @@ export default function SigninPage() {
       localStorage.setItem('userInfo', JSON.stringify(data));
       navigate(redirect || '/');
     } catch (err) {
-toast.error(getError(err))    }
+      toast.error(getError(err));
+    }
   };
 
   useEffect(() => {
@@ -66,11 +66,6 @@ toast.error(getError(err))    }
 
         <div className="mb-3">
           <Button type="submit">Sign In</Button>
-        </div>
-
-        <div className="mb-3">
-          New customer?{' '}
-          <Link to={`/singup`}>Create your account</Link>
         </div>
       </Form>
     </Container>
