@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from 'react-router-dom';
 
-
 export default function CalendarPage() {
   const [busyHours, setBusyHours] = useState('');
   const [sleepHours, setSleepHours] = useState('');
@@ -14,7 +13,6 @@ export default function CalendarPage() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [showResults, setShowResults] = useState(false);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,12 +59,15 @@ export default function CalendarPage() {
     onlyDayEnd
   );
 
-  let remainingYearsCalculator = (onlyYearEnd - onlyYearStart);
-  let remainingMonthsCalculator = (onlyMonthEnd - onlyMonthStart);
+  let remainingYearsCalculator = onlyYearEnd - onlyYearStart;
+  let remainingMonthsCalculator = onlyMonthEnd - onlyMonthStart;
   const remainingDaysCalculator = onlyDayEnd - onlyDayStart;
-const remainingDayFinalizer = remainingMonthsCalculator * 30 + remainingYearsCalculator * 365 + remainingDaysCalculator;
+  const remainingDayFinalizer =
+    remainingMonthsCalculator * 30 +
+    remainingYearsCalculator * 365 +
+    remainingDaysCalculator;
 
-if (remainingMonthsCalculator > 0) {
+  if (remainingMonthsCalculator > 0) {
     remainingMonthsCalculator -= 1;
   }
 
@@ -76,17 +77,26 @@ if (remainingMonthsCalculator > 0) {
   console.log(
     remainingYearsCalculator,
     remainingMonthsCalculator,
-    remainingDaysCalculator, remainingDayFinalizer
-    
+    remainingDaysCalculator,
+    remainingDayFinalizer
   );
 
-  const avgHoursPerDay = busyHours / remainingDayFinalizer ;
+  const avgHoursPerDay = busyHours / remainingDayFinalizer;
 
   console.log(freeHours, avgHoursPerDay);
 
-  
   return (
     <div>
+      <Container className="small-container">
+        <div className="mb-3">
+          <Button className="bg-warning">
+            <Link to={`/signup`}>
+              Want some extra features in the future? Register here.
+            </Link>
+          </Button>
+        </div>
+        <br></br>
+      </Container>
       <h1>Calendar page</h1>
       <Container className="small-container">
         <Form onSubmit={handleSubmit}>
@@ -143,36 +153,35 @@ if (remainingMonthsCalculator > 0) {
           <Button type="submit">Calculate</Button>
         </Form>
       </Container>
-<br></br>
-{showResults &&(<div>
-        <Container className="small-container">
-          <Card className="bg-light border-primary">
-            <Card.Body>
-              <Card.Text>
-                Remaining years untill deadline: <b>{remainingYearsCalculator}</b>
-              </Card.Text>
-              <Card.Text>
-                Remaining months untill deadline: <b>{remainingMonthsCalculator}</b>
-              </Card.Text>
-              <Card.Text>
-                Remaining days untill deadline: <b>{remainingDayFinalizer}</b>
-              </Card.Text>
-              <Card.Text>
-                Available hours per day: <b>{freeHours}</b>
-              </Card.Text>
-              <Card.Text>
-                Average hours required per day to complete the project: <b>{avgHoursPerDay}</b>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Container>
-        <br></br>
-        <Container className='small-container'><div className="mb-3">
-            <Button className='bg-warning'><Link to={`/signup`}>Want some extra features in the future?</Link></Button>
-          
-        </div></Container>
-        
-      </div>)}
+      <br></br>
+      {showResults && (
+        <div>
+          <Container className="small-container">
+            <Card className="bg-light border-primary">
+              <Card.Body>
+                <Card.Text>
+                  Remaining years untill deadline:{' '}
+                  <b>{remainingYearsCalculator}</b>
+                </Card.Text>
+                <Card.Text>
+                  Remaining months untill deadline:{' '}
+                  <b>{remainingMonthsCalculator}</b>
+                </Card.Text>
+                <Card.Text>
+                  Remaining days untill deadline: <b>{remainingDayFinalizer}</b>
+                </Card.Text>
+                <Card.Text>
+                  Available hours per day: <b>{freeHours}</b>
+                </Card.Text>
+                <Card.Text>
+                  Average hours required per day to complete the project:{' '}
+                  <b>{avgHoursPerDay}</b>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Container>
+        </div>
+      )}
     </div>
   );
 }

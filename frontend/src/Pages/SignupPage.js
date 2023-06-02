@@ -93,7 +93,7 @@ toast.error(getError(err))    }
 
         <div className="mb-3">
           Already have an account?{' '}
-          <Link to={`/singin?redirect=${redirect}`}>Sign In</Link>
+          <Link to={`/singin`}>Sign In</Link>
         </div>
       </Form>
     </Container>
