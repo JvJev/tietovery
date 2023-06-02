@@ -5,7 +5,7 @@ Main features:
 4. get and post data to mongo database via api.
 
     Note: I created this application from my previous code. This was faster apprach because I had very limited. You will see in commits that I have deleted unused code. Here is link to original project if you are interested: https://github.com/JvJev/eshop_react_node .
-
+    Note: tools used: vs code, chrome, react, node.express, npm, mongoDB, chatGPT, youtube, google, github, 
 
 
 Here are steps how to use application:
@@ -14,7 +14,7 @@ Here are steps how to use application:
 
 2. Open code in your code editor.
     Note: I used VS code, bash for terminal, NPM. So further instructions 
-    instructions will be based on mentioned conditions.
+    will be based on mentioned tools.
 
 3. Open two terminal windows. In first type in "cd frontend" to reach frontend directory, 
 in second "cd backend" to reach backend directory. 
